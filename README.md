@@ -10,7 +10,8 @@ Software dependencies
 
 1. Python 3.8 or higher <https://python.org>.
 2. NumPy <https://numpy.org/>. 
-3. Matplotlib <https://matplotlib.org>.
+3. SciPy <https://scipy.org/>. 
+4. Matplotlib <https://matplotlib.org>.
 
 Installation from source
 -----------------------
