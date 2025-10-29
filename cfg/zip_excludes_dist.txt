@@ -1,0 +1,14 @@
+CRRM-2.0/.git/*
+CRRM-2.0/TODO.txt
+CRRM-2.0/*.swp
+CRRM-2.0/img/*.pdf
+CRRM-2.0/ani/*.png
+CRRM-2.0/mp4/*.mp4
+CRRM-2.0/__pycache__/*
+CRRM-2.0/CRRM/__pycache__/*
+CRRM-2.0/CRRM/*.png
+CRRM-2.0/CRRM/*.pdf
+CRRM-2.0/attic/*
+CRRM-2.0/tex/*
+CRRM-2.0/CRRM_profile.dat
+CRRM-2.0/how_to_make_a_local_install.txt

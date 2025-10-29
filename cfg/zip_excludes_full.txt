@@ -1,0 +1,12 @@
+CRRM-2.0/*.swp
+CRRM-2.0/img/*.pdf
+CRRM-2.0/ani/*.png
+CRRM-2.0/mp4/*.mp4
+CRRM-2.0/__pycache__/*
+CRRM-2.0/CRRM/__pycache__/*
+CRRM-2.0/CRRM/*.png
+CRRM-2.0/CRRM/*.pdf
+CRRM-2.0/attic/*
+CRRM-2.0/tex/*.pygtex
+CRRM-2.0/tex/_minted-Briggs_CRRM_slides/*
+CRRM-2.0/CRRM_profile.dat
