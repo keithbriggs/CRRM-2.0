@@ -22,4 +22,6 @@ Installation from source
 Documentation
 -------------
 
-See doc/sphinx-build/index.html.
+See <https://crrm-20.readthedocs.io/en/latest/>.
+
+Local version in doc/sphinx-build/index.html.
