@@ -1,9 +1,9 @@
 CRRM 5G system-level simulator
 ------------------------------
 
-Keith Briggs, Ibrahim Nur, Kishan Sthankiya
+Keith Briggs and Ibrahim Nur
 
-The CRRM simulator emulates a cellular radio system roughly following 5G concepts and channel models. The intention is to have an easy-to-use and fast system written in pure Python with minimal dependencies. It is especially designed to be suitable for interfacing to AI engines such as ``tensorflow`` or ``pytorch``.  The simulator is based on an earlier one developed for the AIMM project (<https://aimm.celticnext.eu>) by Keith Briggs (<https://keithbriggs.info>).
+The CRRM (cellular radio reference model) simulator emulates a cellular radio system following 5G concepts and channel models. The intention is to have an easy-to-use, scalable, and very fast system written in pure Python with minimal dependencies. It is especially designed to be suitable for interfacing to AI engines such as ``tensorflow`` or ``pytorch``.  The simulator builds on an earlier one developed for the AIMM project (<https://github.com/keithbriggs/AIMM-simulator>) by Keith Briggs (<https://keithbriggs.info>), but is a complete rewrite with many improvements. It also uses ideas from the CRM project by Kishan Sthankiya (<https://github.com/apw804/CellularReferenceModel>).
 
 Software dependencies
 ---------------------
