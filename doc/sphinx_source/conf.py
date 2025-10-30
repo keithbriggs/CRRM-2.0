@@ -14,7 +14,7 @@ import os, pathlib
 import sys
 
 sys.path.insert(0, os.path.abspath("./../../CRRM/"))
-print(f"path={sys.path}")
+#print(f"path={sys.path}")
 
 # don't fail the build if these are not importable...
 autodoc_mock_imports = ["numpy", "scipy", "matplotlib"]
