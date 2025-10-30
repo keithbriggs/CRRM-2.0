@@ -50,12 +50,13 @@ Software dependencies
 3. `SciPy <https://scipy.org/>`_.
 4. `matplotlib <https://matplotlib.org>`_.
 
-Installation
-^^^^^^^^^^^^
+Installation from source
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
   :linenos:
 
+  download zip from <https://github.com/keithbriggs/CRRM-2.0/tree/master>
   unzip CRRM-2.0.zip
   cd CRRM-2.0
   pip install .
