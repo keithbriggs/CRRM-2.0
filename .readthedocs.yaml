@@ -8,7 +8,7 @@ build:
 sphinx:
   configuration: doc/sphinx_source/conf.py
 
- Explicitly set the version of Python and its requirements
+# Explicitly set the version of Python and its requirements
 python:
   install:
     - requirements: doc/requirements.txt
