@@ -56,7 +56,7 @@ Installation from PyPi
 
 .. code-block:: bash
 
-pip install CRRM==2.0.0
+  pip install CRRM==2.0.0
 
 
 Installation from source
