@@ -13,6 +13,11 @@ Software dependencies
 3. SciPy <https://scipy.org/>. 
 4. Matplotlib <https://matplotlib.org>.
 
+Installation from PyPi
+-----------------------
+
+pip install CRRM==2.0.0
+
 Installation from source
 ------------------------
 
