@@ -56,7 +56,7 @@ Installation from source
 .. code-block:: bash
   :linenos:
 
-  download zip from `here <https://github.com/keithbriggs/CRRM-2.0/tree/master>`
+  download zip from `here <https://github.com/keithbriggs/CRRM-2.0/tree/master>`_
   unzip CRRM-2.0.zip
   cd CRRM-2.0
   pip install .
