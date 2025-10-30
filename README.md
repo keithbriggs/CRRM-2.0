@@ -14,11 +14,12 @@ Software dependencies
 4. Matplotlib <https://matplotlib.org>.
 
 Installation from source
------------------------
+------------------------
 
-1. unzip CRRM-2.0.zip
-2. cd CRRM-2.0
-3. pip install .
+1. Download zip from the green "<> Code" tab above
+2. unzip CRRM-2.0.zip
+3. cd CRRM-2.0
+4. pip install .
 
 Documentation
 -------------
