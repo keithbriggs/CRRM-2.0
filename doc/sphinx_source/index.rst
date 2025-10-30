@@ -50,8 +50,11 @@ Software dependencies
 3. `SciPy <https://scipy.org/>`_.
 4. `matplotlib <https://matplotlib.org>`_.
 
+
 Installation from PyPi
 -----------------------
+
+.. code-block:: bash
 
 pip install CRRM==2.0.0
 
