@@ -65,11 +65,12 @@ Installation from source
 First download the source as a zipfile from `<https://github.com/keithbriggs/CRRM-2.0/tree/master>`_. Then perform these steps in your terminal:
 
 .. code-block:: bash
-  :linenos:
 
   unzip CRRM-2.0.zip
   cd CRRM-2.0
   pip install .
+
+You should of course develop new projects using CRRM in your own folders, not under the CRRM-2.0 folder!
 
 Performance
 ^^^^^^^^^^^
