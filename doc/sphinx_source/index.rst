@@ -62,10 +62,11 @@ Installation from PyPi
 Installation from source
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+First download the source as a zipfile from `<https://github.com/keithbriggs/CRRM-2.0/tree/master>`_. Then perform these steps in your terminal:
+
 .. code-block:: bash
   :linenos:
 
-  download zip from `here <https://github.com/keithbriggs/CRRM-2.0/tree/master>`_
   unzip CRRM-2.0.zip
   cd CRRM-2.0
   pip install .
