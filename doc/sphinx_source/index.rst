@@ -32,6 +32,8 @@ Purpose
 
 CRRM stands for Cellular Radio Reference Model. This is a system-level network simulator which aims to predict the performance of a cellular radio system. It follows 5G concepts and channel models. The intention is to have an easy-to-use and fast system written in pure Python with minimal dependencies. It is especially designed to be suitable for interfacing to AI engines such as ``tensorflow`` or ``pytorch``. One of the main application areas is testing the performance of novel network management algorithms.
 
+Note that CRRM is a *system-level* simulator, not a link-level simulator. This means that it takes a coarse-grained approach, specifically meaning that it does not model concepts like packet flows and queueing at all. Resource allocation is modelled, but only as a continuous process that ignores discrete resource blocks. These simplifications are necessary if large systems are to be simulated. The main application areas are the evaluation of high-level network management strategies, not the accurate estimation of throughputs to indvidual devices. Other software is available for that type of link-level simulation.
+
 CRRM is carefully designed to be very fast and to be able to handle large systems. It achieves this by a novel compute-on-demand mechanism, whereby internal data is only computed when needed. Moreover, only data which is known to have changed, normally because of User Equipment (UE) movement, is actually computed. The system knows internally what has not changed and thus does not need to be re-computed.
 
 CRRM builds on the previous projects `AIMM-simulator <https://github.com/keithbriggs/AIMM-simulator>`_ by Keith Briggs, and `Cellular Reference Model <https://github.com.mcas.ms/apw804/CellularReferenceModel>`_ by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project.
@@ -39,7 +41,7 @@ CRRM builds on the previous projects `AIMM-simulator <https://github.com/keithbr
 Authors
 ^^^^^^^
 
-- Keith Briggs (BT Research and Networks Strategy)
+- Keith Briggs (`<https://keithbriggs.info>`_)
 - Ibrahim Nur (University of Cambridge)
 
 Software dependencies
@@ -56,7 +58,7 @@ Installation from PyPi
 
 .. code-block:: bash
 
-  pip install CRRM==2.0.0
+  pip install CRRM
 
 
 Installation from source
