@@ -81,6 +81,9 @@ def plot_cdf(x, figurefnbase, xlabel="", ylabel="", title=""):
     pngfn = figurefnbase + ".png"
     fig.savefig(pngfn, dpi=200)
     print("eog %s &" % pngfn)
+    pdffn = figurefnbase + ".pdf"
+    fig.savefig(pdffn)
+    print("evince %s &" % pdffn)
 
 
 def exact_SIR_ccdf(theta, delta):
