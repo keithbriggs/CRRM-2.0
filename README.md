@@ -33,6 +33,6 @@ Installation from source
 Documentation
 -------------
 
-See <https://crrm-20.readthedocs.io/en/latest/>.
+See <https://crrm-20.readthedocs.io/en/latest/> (local version in doc/sphinx-build/index.html).
 
-Local version in doc/sphinx-build/index.html.
+Further technical documentation is at <https://arxiv.org/abs/2511.02692>.

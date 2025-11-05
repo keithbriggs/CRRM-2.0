@@ -36,7 +36,7 @@ Note that CRRM is a *system-level* simulator, not a link-level simulator. This m
 
 CRRM is carefully designed to be very fast and to be able to handle large systems. It achieves this by a novel compute-on-demand mechanism, whereby internal data is only computed when needed. Moreover, only data which is known to have changed, normally because of User Equipment (UE) movement, is actually computed. The system knows internally what has not changed and thus does not need to be re-computed.
 
-CRRM builds on the previous projects `AIMM-simulator <https://github.com/keithbriggs/AIMM-simulator>`_ by Keith Briggs, and `Cellular Reference Model <https://github.com.mcas.ms/apw804/CellularReferenceModel>`_ by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project.
+CRRM builds on the previous projects `AIMM-simulator <https://github.com/keithbriggs/AIMM-simulator>`_ by Keith Briggs, and `Cellular Reference Model <https://github.com.mcas.ms/apw804/CellularReferenceModel>`_ by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project. Further technical documentation is at `<https://arxiv.org/abs/2511.02692>`_.
 
 Authors
 ^^^^^^^
@@ -106,7 +106,8 @@ Tutorial examples
   params=CRRM.Parameters()
   sim=CRRM.Simulator(params)
 
-**Important**: the parameters class is used to set the *initial* conditions for the simulation. If these are changed during a simulation run, it is not safe to assume that the new values will be used by the simulation kernel. For only a few parameters is it meaningful to change them during a run, and for these methods with names like  :any:`CRRM.Simulator.set_power_matrix()` methods are provided. See the documentation of all available such methods under :any:`Simulator` below.
+**Important**: the parameters class is used to set the *initial* conditions for the simulation. If these are changed during a simulation run, it is not safe to assume that the new values will be used by the simulation kernel. For only a few parameters is it meaningful to change them during a run, and for these methods with names like  :any:`CRRM.Simulator.set_power_matrix()` methods are provided. See the documentation of all available such methods under :any:`Simulator` below. Further technical documentation is at `<https://arxiv.org/abs/2511.02692>`_.
+
 
 Example 01: Quick start
 ^^^^^^^^^^^^^^^^^^^^^^^
