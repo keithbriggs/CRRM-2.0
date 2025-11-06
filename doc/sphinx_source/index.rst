@@ -122,7 +122,7 @@ The following example will test the installation and introduce the basic concept
   crrm_simulator=Simulator(crrm_parameters)
   crrm_simulator.layout_plot()
   crrm_simulator.update()
-  print(f'UE throughputs={crrm.get_UE_throughputs()} Mb/s')
+  print(f'UE throughputs={crrm_simulator.get_UE_throughputs()} Mb/s')
   
 The minimal steps required to build and run a simulation are:
 
