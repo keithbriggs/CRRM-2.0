@@ -1,3 +1,4 @@
+# Keith Briggs 2025-11-07 add extra row to tables to handle index=-1 case (CQI=-1 is used to indicate zero SINR)
 # Keith Briggs 2025-08-26
 
 """
