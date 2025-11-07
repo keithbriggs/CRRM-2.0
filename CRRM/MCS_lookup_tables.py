@@ -43,6 +43,7 @@ MCS_index_table_1 = np_array(
         [26, 6, 873, 5.1152],
         [27, 6, 910, 5.3320],
         [28, 6, 948, 5.5547],
+        [0, 0, 0, 0.0], # used for -1 index, indicating SINR=0, CQI=-1. Keith Briggs 2025-11-06
     ]
 )
 
@@ -78,6 +79,7 @@ MCS_index_table_2 = np_array(
         [26, 8, 916.5, 7.1602],
         [27, 8, 948, 7.4063],
         [28, 8, 948, 7.4063],  # repeat of line 27, added to simplify indexing
+        [0, 0, 0, 0.0], # used for -1 index, indicating SINR=0, CQI=-1. Keith Briggs 2025-11-06
     ]
 )
 
@@ -113,6 +115,7 @@ MCS_index_table_3 = np_array(
         [26, 6, 666, 3.9023],
         [27, 6, 719, 4.2129],
         [28, 6, 772, 4.5234],
+        [0, 0, 0, 0.0], # used for -1 index, indicating SINR=0, CQI=-1. Keith Briggs 2025-11-06
     ]
 )
 
