@@ -1344,22 +1344,15 @@ class CRRM:
                 pathloss_dB = lambda d: self.params.pathloss_model.get_pathloss_dB(
                     d, d + 20.0, None, None
                 )  # d,d+20.0 good enough for approximate pathloss!
+            # here we'll keep separate cases for potential future use...
             elif "RMa" in self.params.pathloss_model_name:
-                pathloss_dB = lambda d: self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot(
-                    d
-                )
+                pathloss_dB = self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot
             elif "UMa" in self.params.pathloss_model_name:
-                pathloss_dB = lambda d: self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot(
-                    d
-                )
+                pathloss_dB = self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot
             elif "UMi" in self.params.pathloss_model_name:
-                pathloss_dB = lambda d: self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot(
-                    d
-                )
+                pathloss_dB = self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot
             elif "InH" == self.params.pathloss_model_name:
-                pathloss_dB = lambda d: self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot(
-                    d
-                )
+                pathloss_dB = self.params.pathloss_model._get_approximate_pathloss_dB_for_layout_plot
             else:
                 return
             for pl_dB in pathloss_circles_dB:
