@@ -121,7 +121,6 @@ The following example will test the installation and introduce the basic concept
   crrm_parameters=Parameters(n_ues=20)
   crrm_simulator=Simulator(crrm_parameters)
   crrm_simulator.layout_plot()
-  crrm_simulator.update()
   print(f'UE throughputs={crrm_simulator.get_UE_throughputs()} Mb/s')
   
 The minimal steps required to build and run a simulation are:
@@ -130,8 +129,7 @@ The minimal steps required to build and run a simulation are:
 2. Create a ``Parameters`` instance.
 3. Create a ``Simulator`` instance with the ``Parameters`` instance as its only argument.
 4. Draw a plot to confirm the system layout (see below).
-5. Call the ``update`` method on the ``Simulator`` instance. 
-6. Print out the computed values of any variables of interest.
+5. Print out the computed values of any variables of interest.
 
 The output should be something like this:
 
@@ -675,7 +673,7 @@ Simulator class
 ^^^^^^^^^^^^^^^
 
 .. automodule:: CRRM.Simulator
-    :members: set_rng_seeds,set_n_sectors,set_noise_power_spectral_density,set_resource_allocation_fairness,set_ue_locations,set_power_matrix,scale_ue_locations,move_ue_locations,add_ue,layout_plot,get_rngs,get_resource_allocation_fairness,get_ue_locations,get_power_matrix,get_UE_throughputs
+    :members: set_rng_seeds,set_n_sectors,set_noise_power_spectral_density,set_resource_allocation_fairness,set_ue_locations,set_power_matrix,change_power_matrix,scale_ue_locations,move_ue_locations,add_ue,layout_plot,get_rngs,get_resource_allocation_fairness,get_ue_locations,get_power_matrix,get_UE_throughputs
     :exclude-members: invert_attachment_vector,update_data
 
 .. automodule:: CRRM
