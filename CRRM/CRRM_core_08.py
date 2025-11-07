@@ -424,12 +424,6 @@ class Power(_Node):
         self.up_to_date = True
         self.flood_out_of_date()
 
-    #def change_powers(self, p):  # not yet tested
-    #    self.data = p
-    #    self.up_to_date = True
-    #    self.flood_out_of_date()
-    #    self.changed = None  # implies that everything downstream needs updating
-
 
 class Cell_locations(_Node):
     "cell locations"
@@ -473,7 +467,8 @@ class UE_locations(_Node):
 
 
 class Distance_matrix(_Node):
-    """distance matrices and angles.
+    """
+    distance matrices and angles.
     d2d = sqrt(x^2+y^2)     = hypot(x,y)   = norm(x-y)
     d3d = sqrt(x^2+y^2+z^2) = hypot(d2d,z) = norm(d2d-y)
     theta = angles from cells to UEs
@@ -1076,6 +1071,13 @@ class CRRM:
     def set_power_matrix(self, p):
         "Set the power matrix to a new value. The matrix must have shape (n_cell_locations,n_subbands). It will be repeated across sectors if there are more than 1."
         power_matrix = np.array(p, dtype=np.float64)
+        if np.any(power_matrix<0.0):
+            print(
+                red(
+                    f"set_power_matrix: negative values, quitting!"
+                )
+            )
+            exit(1)
         shp = power_matrix.shape
         if shp[0] != self.params.n_cell_locations:
             print(
@@ -1102,7 +1104,7 @@ class CRRM:
         Parameters
         ----------
         indices : a list of cell indices, or 'all'
-        deltas : float or row vector (one element per subband)
+        deltas : float, or 2d array (one row for each index, one column per subband)
         """
         if indices in (
             "all",
@@ -1111,6 +1113,7 @@ class CRRM:
             self.p.data[:] += deltas
         else:
             self.p.data[indices] += deltas
+        self.p.data=np.maximum(0.0,self.p.data) # don't allow negative powers
         self.p.up_to_date = False
         self.p.flood_out_of_date()
 
