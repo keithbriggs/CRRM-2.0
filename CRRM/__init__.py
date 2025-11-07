@@ -4,7 +4,7 @@
 
 def get_version():
   'Get the version number of the CRRM module.'
-  return '2.0.1'
+  return '2.0.2'
 
 from .CRRM_core_08 import _Node
 
