@@ -611,7 +611,7 @@ CRRM internal structure and mathematical model
 Most users do not need to know anything about this.
 
 - UE locations :math:`u_i` (one row per UE, three columns :math:`x,y,x`).
-- Cells locations :math:`c_j` one row per cell, (three columns :math:`x,y,x`)
+- Cells locations :math:`c_j` (one row per cell, three columns :math:`x,y,x`)
 - :math:`\text{Cell}_j` transmits with power :math:`p_j` (:math:`p_{jk}` with subbands).
 - Distance matrix :math:`D_{ij}=||u_i-c_j||`.
 - Attachment vector: :math:`\text{UE}_i` attaches to cell :math:`a_j` with best signal.
