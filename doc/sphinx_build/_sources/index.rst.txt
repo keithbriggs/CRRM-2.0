@@ -32,14 +32,16 @@ Purpose
 
 CRRM stands for Cellular Radio Reference Model. This is a system-level network simulator which aims to predict the performance of a cellular radio system. It follows 5G concepts and channel models. The intention is to have an easy-to-use and fast system written in pure Python with minimal dependencies. It is especially designed to be suitable for interfacing to AI engines such as ``tensorflow`` or ``pytorch``. One of the main application areas is testing the performance of novel network management algorithms.
 
+Note that CRRM is a *system-level* simulator, not a link-level simulator. This means that it takes a coarse-grained approach, specifically meaning that it does not model concepts like packet flows and queueing at all. Resource allocation is modelled, but only as a continuous process that ignores discrete resource blocks. These simplifications are necessary if large systems are to be simulated. The main application areas are the evaluation of high-level network management strategies, not the accurate estimation of throughputs to indvidual devices. Other software is available for that type of link-level simulation.
+
 CRRM is carefully designed to be very fast and to be able to handle large systems. It achieves this by a novel compute-on-demand mechanism, whereby internal data is only computed when needed. Moreover, only data which is known to have changed, normally because of User Equipment (UE) movement, is actually computed. The system knows internally what has not changed and thus does not need to be re-computed.
 
-CRRM builds on the previous projects `AIMM-simulator <https://github.com/keithbriggs/AIMM-simulator>`_ by Keith Briggs, and `Cellular Reference Model <https://github.com.mcas.ms/apw804/CellularReferenceModel>`_ by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project.
+CRRM builds on the previous projects `AIMM-simulator <https://github.com/keithbriggs/AIMM-simulator>`_ by Keith Briggs, and `Cellular Reference Model <https://github.com.mcas.ms/apw804/CellularReferenceModel>`_ by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project. Further technical documentation is at `<https://arxiv.org/abs/2511.02692>`_.
 
 Authors
 ^^^^^^^
 
-- Keith Briggs (BT Research and Networks Strategy)
+- Keith Briggs (`<https://keithbriggs.info>`_)
 - Ibrahim Nur (University of Cambridge)
 
 Software dependencies
@@ -50,15 +52,27 @@ Software dependencies
 3. `SciPy <https://scipy.org/>`_.
 4. `matplotlib <https://matplotlib.org>`_.
 
-Installation
-^^^^^^^^^^^^
+
+Installation from PyPi
+-----------------------
 
 .. code-block:: bash
-  :linenos:
+
+  pip install CRRM
+
+
+Installation from source
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+First download the source as a zipfile from `<https://github.com/keithbriggs/CRRM-2.0/tree/master>`_. Then perform these steps in your terminal:
+
+.. code-block:: bash
 
   unzip CRRM-2.0.zip
   cd CRRM-2.0
   pip install .
+
+You should of course develop new projects using CRRM in your own folders, not under the CRRM-2.0 folder!
 
 Performance
 ^^^^^^^^^^^
@@ -92,7 +106,8 @@ Tutorial examples
   params=CRRM.Parameters()
   sim=CRRM.Simulator(params)
 
-**Important**: the parameters class is used to set the *initial* conditions for the simulation. If these are changed during a simulation run, it is not safe to assume that the new values will be used by the simulation kernel. For only a few parameters is it meaningful to change them during a run, and for these methods with names like  :any:`CRRM.Simulator.set_power_matrix()` methods are provided. See the documentation of all available such methods under :any:`Simulator` below.
+**Important**: the parameters class is used to set the *initial* conditions for the simulation. If these are changed during a simulation run, it is not safe to assume that the new values will be used by the simulation kernel. For only a few parameters is it meaningful to change them during a run, and for these methods with names like  :any:`CRRM.Simulator.set_power_matrix()` methods are provided. See the documentation of all available such methods under :any:`Simulator` below. Further technical documentation is at `<https://arxiv.org/abs/2511.02692>`_.
+
 
 Example 01: Quick start
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -106,8 +121,7 @@ The following example will test the installation and introduce the basic concept
   crrm_parameters=Parameters(n_ues=20)
   crrm_simulator=Simulator(crrm_parameters)
   crrm_simulator.layout_plot()
-  crrm_simulator.update()
-  print(f'UE throughputs={crrm.get_UE_throughputs()} Mb/s')
+  print(f'UE throughputs={crrm_simulator.get_UE_throughputs()} Mb/s')
   
 The minimal steps required to build and run a simulation are:
 
@@ -115,8 +129,7 @@ The minimal steps required to build and run a simulation are:
 2. Create a ``Parameters`` instance.
 3. Create a ``Simulator`` instance with the ``Parameters`` instance as its only argument.
 4. Draw a plot to confirm the system layout (see below).
-5. Call the ``update`` method on the ``Simulator`` instance. 
-6. Print out the computed values of any variables of interest.
+5. Print out the computed values of any variables of interest.
 
 The output should be something like this:
 
@@ -598,7 +611,7 @@ CRRM internal structure and mathematical model
 Most users do not need to know anything about this.
 
 - UE locations :math:`u_i` (one row per UE, three columns :math:`x,y,x`).
-- Cells locations :math:`c_j` one row per cell, (three columns :math:`x,y,x`)
+- Cells locations :math:`c_j` (one row per cell, three columns :math:`x,y,x`)
 - :math:`\text{Cell}_j` transmits with power :math:`p_j` (:math:`p_{jk}` with subbands).
 - Distance matrix :math:`D_{ij}=||u_i-c_j||`.
 - Attachment vector: :math:`\text{UE}_i` attaches to cell :math:`a_j` with best signal.
@@ -660,7 +673,7 @@ Simulator class
 ^^^^^^^^^^^^^^^
 
 .. automodule:: CRRM.Simulator
-    :members: set_rng_seeds,set_n_sectors,set_noise_power_spectral_density,set_resource_allocation_fairness,set_ue_locations,set_power_matrix,scale_ue_locations,move_ue_locations,add_ue,layout_plot,get_rngs,get_resource_allocation_fairness,get_ue_locations,get_power_matrix,get_UE_throughputs
+    :members: set_rng_seeds,set_n_sectors,set_noise_power_spectral_density,set_resource_allocation_fairness,set_ue_locations,set_power_matrix,change_power_matrix,scale_ue_locations,move_ue_locations,add_ue,layout_plot,get_rngs,get_resource_allocation_fairness,get_ue_locations,get_power_matrix,get_UE_throughputs
     :exclude-members: invert_attachment_vector,update_data
 
 .. automodule:: CRRM

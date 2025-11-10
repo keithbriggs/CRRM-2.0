@@ -45,16 +45,17 @@
 </div>
 <section id="crrm-documentation">
 <h1>CRRM documentation<a class="headerlink" href="#crrm-documentation" title="Link to this heading">¶</a></h1>
-<p>Last modified: 2025-09-30 10:12</p>
+<p>Last modified: 2025-11-10 10:49</p>
 <section id="purpose">
 <h2>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h2>
 <p>CRRM stands for Cellular Radio Reference Model. This is a system-level network simulator which aims to predict the performance of a cellular radio system. It follows 5G concepts and channel models. The intention is to have an easy-to-use and fast system written in pure Python with minimal dependencies. It is especially designed to be suitable for interfacing to AI engines such as <code class="docutils literal notranslate"><span class="pre">tensorflow</span></code> or <code class="docutils literal notranslate"><span class="pre">pytorch</span></code>. One of the main application areas is testing the performance of novel network management algorithms.</p>
+<p>Note that CRRM is a <em>system-level</em> simulator, not a link-level simulator. This means that it takes a coarse-grained approach, specifically meaning that it does not model concepts like packet flows and queueing at all. Resource allocation is modelled, but only as a continuous process that ignores discrete resource blocks. These simplifications are necessary if large systems are to be simulated. The main application areas are the evaluation of high-level network management strategies, not the accurate estimation of throughputs to indvidual devices. Other software is available for that type of link-level simulation.</p>
 <p>CRRM is carefully designed to be very fast and to be able to handle large systems. It achieves this by a novel compute-on-demand mechanism, whereby internal data is only computed when needed. Moreover, only data which is known to have changed, normally because of User Equipment (UE) movement, is actually computed. The system knows internally what has not changed and thus does not need to be re-computed.</p>
-<p>CRRM builds on the previous projects <a class="reference external" href="https://github.com/keithbriggs/AIMM-simulator">AIMM-simulator</a> by Keith Briggs, and <a class="reference external" href="https://github.com.mcas.ms/apw804/CellularReferenceModel">Cellular Reference Model</a> by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project.</p>
+<p>CRRM builds on the previous projects <a class="reference external" href="https://github.com/keithbriggs/AIMM-simulator">AIMM-simulator</a> by Keith Briggs, and <a class="reference external" href="https://github.com.mcas.ms/apw804/CellularReferenceModel">Cellular Reference Model</a> by Kishan Sthankiya, especially for pathloss models. However, CRRM has a completely new and much more efficient internal design and a new API, and essentially is a new project. Further technical documentation is at <a class="reference external" href="https://arxiv.org/abs/2511.02692">https://arxiv.org/abs/2511.02692</a>.</p>
 <section id="authors">
 <h3>Authors<a class="headerlink" href="#authors" title="Link to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>Keith Briggs (BT Research and Networks Strategy)</p></li>
+<li><p>Keith Briggs (<a class="reference external" href="https://keithbriggs.info">https://keithbriggs.info</a>)</p></li>
 <li><p>Ibrahim Nur (University of Cambridge)</p></li>
 </ul>
 </section>
@@ -66,23 +67,31 @@
 <li><p><a class="reference external" href="https://scipy.org/">SciPy</a>.</p></li>
 <li><p><a class="reference external" href="https://matplotlib.org">matplotlib</a>.</p></li>
 </ol>
-</section>
-<section id="installation">
-<h3>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>unzip<span class="w"> </span>CRRM-2.0.zip
-<span class="linenos">2</span><span class="nb">cd</span><span class="w"> </span>CRRM-2.0
-<span class="linenos">3</span>pip<span class="w"> </span>install<span class="w"> </span>.
+<section id="installation-from-pypi">
+<h4>Installation from PyPi<a class="headerlink" href="#installation-from-pypi" title="Link to this heading">¶</a></h4>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>CRRM
 </pre></div>
 </div>
+</section>
+</section>
+<section id="installation-from-source">
+<h3>Installation from source<a class="headerlink" href="#installation-from-source" title="Link to this heading">¶</a></h3>
+<p>First download the source as a zipfile from <a class="reference external" href="https://github.com/keithbriggs/CRRM-2.0/tree/master">https://github.com/keithbriggs/CRRM-2.0/tree/master</a>. Then perform these steps in your terminal:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>unzip<span class="w"> </span>CRRM-2.0.zip
+<span class="nb">cd</span><span class="w"> </span>CRRM-2.0
+pip<span class="w"> </span>install<span class="w"> </span>.
+</pre></div>
+</div>
+<p>You should of course develop new projects using CRRM in your own folders, not under the CRRM-2.0 folder!</p>
 </section>
 <section id="performance">
 <h3>Performance<a class="headerlink" href="#performance" title="Link to this heading">¶</a></h3>
 <p>The plot below shows the typical computation time for a range of system sizes. Note the proportionality of computation to both the number of cells, and to the number of UEs.  This indicates that there are no significant computational overheads.</p>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/eca7c911145d07d25f21fb6217d0e384/CRRM_large_system_timing_tests.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_large_system_timing_tests.py</span></code></a></p>
-<figure class="align-default" id="id1">
+<figure class="align-default" id="id2">
 <img alt="CRRM_large_system_timing_tests.png" src="_images/CRRM_large_system_timing_tests.png" />
 <figcaption>
-<p><span class="caption-text">CRRM performance metrics.</span><a class="headerlink" href="#id1" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM performance metrics.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <hr align="left" width="100%"></section>
@@ -99,7 +108,7 @@
 <span class="linenos">7</span><span class="n">sim</span><span class="o">=</span><span class="n">CRRM</span><span class="o">.</span><span class="n">Simulator</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><strong>Important</strong>: the parameters class is used to set the <em>initial</em> conditions for the simulation. If these are changed during a simulation run, it is not safe to assume that the new values will be used by the simulation kernel. For only a few parameters is it meaningful to change them during a run, and for these methods with names like  <a class="reference internal" href="#CRRM.Simulator.set_power_matrix" title="CRRM.Simulator.set_power_matrix"><code class="xref any py py-func docutils literal notranslate"><span class="pre">CRRM.Simulator.set_power_matrix()</span></code></a> methods are provided. See the documentation of all available such methods under <a class="reference internal" href="#module-CRRM.Simulator" title="CRRM.Simulator"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">Simulator</span></code></a> below.</p>
+<p><strong>Important</strong>: the parameters class is used to set the <em>initial</em> conditions for the simulation. If these are changed during a simulation run, it is not safe to assume that the new values will be used by the simulation kernel. For only a few parameters is it meaningful to change them during a run, and for these methods with names like  <a class="reference internal" href="#CRRM.Simulator.set_power_matrix" title="CRRM.Simulator.set_power_matrix"><code class="xref any py py-func docutils literal notranslate"><span class="pre">CRRM.Simulator.set_power_matrix()</span></code></a> methods are provided. See the documentation of all available such methods under <a class="reference internal" href="#module-CRRM.Simulator" title="CRRM.Simulator"><code class="xref any py py-mod docutils literal notranslate"><span class="pre">Simulator</span></code></a> below. Further technical documentation is at <a class="reference external" href="https://arxiv.org/abs/2511.02692">https://arxiv.org/abs/2511.02692</a>.</p>
 <section id="example-01-quick-start">
 <h3>Example 01: Quick start<a class="headerlink" href="#example-01-quick-start" title="Link to this heading">¶</a></h3>
 <p>The following example will test the installation and introduce the basic concepts.</p>
@@ -107,8 +116,7 @@
 <span class="linenos">2</span><span class="n">crrm_parameters</span><span class="o">=</span><span class="n">Parameters</span><span class="p">(</span><span class="n">n_ues</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="linenos">3</span><span class="n">crrm_simulator</span><span class="o">=</span><span class="n">Simulator</span><span class="p">(</span><span class="n">crrm_parameters</span><span class="p">)</span>
 <span class="linenos">4</span><span class="n">crrm_simulator</span><span class="o">.</span><span class="n">layout_plot</span><span class="p">()</span>
-<span class="linenos">5</span><span class="n">crrm_simulator</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
-<span class="linenos">6</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;UE throughputs=</span><span class="si">{</span><span class="n">crrm</span><span class="o">.</span><span class="n">get_UE_throughputs</span><span class="p">()</span><span class="si">}</span><span class="s1"> Mb/s&#39;</span><span class="p">)</span>
+<span class="linenos">5</span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;UE throughputs=</span><span class="si">{</span><span class="n">crrm_simulator</span><span class="o">.</span><span class="n">get_UE_throughputs</span><span class="p">()</span><span class="si">}</span><span class="s1"> Mb/s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The minimal steps required to build and run a simulation are:</p>
@@ -117,7 +125,6 @@
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> instance.</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> instance with the <code class="docutils literal notranslate"><span class="pre">Parameters</span></code> instance as its only argument.</p></li>
 <li><p>Draw a plot to confirm the system layout (see below).</p></li>
-<li><p>Call the <code class="docutils literal notranslate"><span class="pre">update</span></code> method on the <code class="docutils literal notranslate"><span class="pre">Simulator</span></code> instance.</p></li>
 <li><p>Print out the computed values of any variables of interest.</p></li>
 </ol>
 <p>The output should be something like this:</p>
@@ -126,10 +133,10 @@
 </div>
 <p>Note that the default locations for cells and UEs used are 7 cells in a hexagonal layout, and UEs distributed as a Poisson Point Process (PPP), with mean 50 (in the approximate area covered by the cells). These default locations can be over-ridden by using the <code class="docutils literal notranslate"><span class="pre">cell_locations</span></code> and <code class="docutils literal notranslate"><span class="pre">ue_initial_locations</span></code> arguments when creating the <code class="docutils literal notranslate"><span class="pre">CRRM_parameters</span></code> instance. In this example we simply use the <cite>n_ues</cite> parameter to use 20 UEs rather than the default 50, but we keep the PPP distribution.</p>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/6d6347d1ccaa8bb8eb1ebf71b321f048/CRRM_example_01_quick-start.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_01_quick-start.py</span></code></a></p>
-<figure class="align-default" id="id2">
+<figure class="align-default" id="id3">
 <img alt="CRRM_example_01_quick-start_layout.png" src="_images/CRRM_example_01_quick-start_layout.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 01 quick-start layout.</span><a class="headerlink" href="#id2" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 01 quick-start layout.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -161,10 +168,10 @@
 <li><p>Plot the results. The <cite>averages</cite> field causes the average of the captured data to also be plotted.</p></li>
 </ol>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/f6b66780d0a1b51af01bd1b819fa187f/CRRM_example_02_logger.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_02_logger.py</span></code></a></p>
-<figure class="align-default" id="id3">
+<figure class="align-default" id="id4">
 <img alt="CRRM_example_02_logger" src="_images/CRRM_example_02_logger.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 02: logger.</span><a class="headerlink" href="#id3" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 02: logger.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -191,10 +198,10 @@
 <li><p>Finally, <code class="docutils literal notranslate"><span class="pre">logger.plot()</span></code> is called with <code class="docutils literal notranslate"><span class="pre">x_axis=ps</span></code> to plot throughput <em>vs</em> the fairness parameter.</p></li>
 </ol>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/72f271f756a1fc05a326e27626d16840/CRRM_example_03_resource_allocation.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_03_resource_allocation.py</span></code></a></p>
-<figure class="align-default" id="id4">
+<figure class="align-default" id="id5">
 <img alt="CRRM_example_03_resource_allocation.png" src="_images/CRRM_example_03_resource_allocation.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 03: resource allocation.</span><a class="headerlink" href="#id4" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 03: resource allocation.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -227,10 +234,10 @@
 </ol>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/191efb4b54116129cd472d485e70a46c/CRRM_example_04_pathloss_model_comparison.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_04_pathloss_model_comparison.py</span></code></a></p>
 <p>The script prints simulation progress to the console and generates the plot shown below. Note how the simple <code class="docutils literal notranslate"><span class="pre">power-law</span></code> model (exponent 3.0) is more pessimistic at short distances than the dual-slope 3GPP models (like RMa), which start with a pathloss exponent closer to 2.0.</p>
-<figure class="align-default" id="id5">
+<figure class="align-default" id="id6">
 <img alt="CRRM_example_04_pathloss_model_comparison.png" src="_images/CRRM_example_04_pathloss_model_comparison.png" />
 <figcaption>
-<p><span class="caption-text">Throughput <em>vs</em> distance for several standard pathloss models.</span><a class="headerlink" href="#id5" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Throughput <em>vs</em> distance for several standard pathloss models.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -267,10 +274,10 @@
 </ol>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/73fe89879bd19cae5bb9b85178e06827/CRRM_example_05_antenna_pattern.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_05_antenna_pattern.py</span></code></a></p>
 <p>The resulting plot clearly shows the gain “lobes” from the 3-sector antenna pattern compared to the flat omnidirectional (1-sector) case, confirming the antenna gain model is working correctly.</p>
-<figure class="align-default" id="id6">
+<figure class="align-default" id="id7">
 <img alt="CRRM_example_05_antenna_pattern.png" src="_images/CRRM_example_05_antenna_pattern.png" />
 <figcaption>
-<p><span class="caption-text">Plot showing 1-sector <em>vs</em> 3-sector throughput for a UE moving in a circle.</span><a class="headerlink" href="#id6" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Plot showing 1-sector <em>vs</em> 3-sector throughput for a UE moving in a circle.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -416,10 +423,10 @@
 </ol>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/0f2b83f552bce95fe7270a2e8f1a397c/CRRM_example_09_InH_3d.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_09_InH_3d.py</span></code></a></p>
 <p>This script outputs a series of <code class="docutils literal notranslate"><span class="pre">.png</span></code> frames to the <code class="docutils literal notranslate"><span class="pre">ani/</span></code> directory and prints a command to compile and open the resulting <code class="docutils literal notranslate"><span class="pre">.mp4</span></code> video.</p>
-<figure class="align-default" id="id7">
+<figure class="align-default" id="id8">
 <img alt="CRRM_example_09_InH_3d_screenshot.png" src="_images/CRRM_example_09_InH_3d_screenshot.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 09: Indoor Hotspot with 3d geometry.</span><a class="headerlink" href="#id7" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 09: Indoor Hotspot with 3d geometry.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -431,10 +438,10 @@
 </pre></div>
 </div>
 <p>The layout plot indicates that the attachement is not to the nearest cell in the three-sector case.</p>
-<figure class="align-default" id="id8">
+<figure class="align-default" id="id9">
 <img alt="CRRM_example_10_sectors_layout.png" src="_images/CRRM_example_10_sectors_layout.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 10 sectors layout.</span><a class="headerlink" href="#id8" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 10 sectors layout.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/b9c15c9b45dd521a17978245c2a7ee41/CRRM_example_10_sectors.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_10_sectors.py</span></code></a></p>
@@ -442,10 +449,10 @@
 <section id="example-11-one-cell-throughput-tests">
 <h3>Example 11: One-cell throughput tests<a class="headerlink" href="#example-11-one-cell-throughput-tests" title="Link to this heading">¶</a></h3>
 <p>This example simply demonstrates that repeatedly adding UEs to a single cell results in throughputs inversely proportional to the number of UEs. See comments in the script for further details.</p>
-<figure class="align-default" id="id9">
+<figure class="align-default" id="id10">
 <img alt="CRRM_example_11_one-cell_throughput_tests_vs_number_equal_distance.png" src="_images/CRRM_example_11_one-cell_throughput_tests_vs_number_equal_distance.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 11 throughput tests.</span><a class="headerlink" href="#id9" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 11 throughput tests.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/193065343db27f74018ccb9030738286/CRRM_example_11_one-cell_throughput_tests.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_11_one-cell_throughput_tests.py</span></code></a></p>
@@ -454,10 +461,10 @@
 <h3>Example 12: Signal-to-Interference ratio cumulative distribution<a class="headerlink" href="#example-12-signal-to-interference-ratio-cumulative-distribution" title="Link to this heading">¶</a></h3>
 <p>This example simply demonstrates a close match to a theoretical cumulative distribution in the case of both cells and UEs randomly distributed according to a Poisson Point Process (PPP). See comments in the script for further details.</p>
 <p>Reference: Haenggi, <em>Stochastic Geometry for Wireless Networks</em>, CUP 2013, section 5.2.</p>
-<figure class="align-default" id="id10">
+<figure class="align-default" id="id11">
 <img alt="CRRM_example_12_sinr_cdf.png" src="_images/CRRM_example_12_sinr_cdf.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 12 SIR cumulative distribution.</span><a class="headerlink" href="#id10" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 12 SIR cumulative distribution.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/6469daea8ae523198677d15eb2e2241f/CRRM_example_12_sinr_cdf.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_12_sinr_cdf.py</span></code></a></p>
@@ -483,10 +490,10 @@ speed-up factor=1.84 😁
 <section id="example-14-fading-demonstration">
 <h3>Example 14: Fading demonstration<a class="headerlink" href="#example-14-fading-demonstration" title="Link to this heading">¶</a></h3>
 <p>A demonstration of the effects of different types of fading on a cell-edge user.</p>
-<figure class="align-default" id="id11">
+<figure class="align-default" id="id12">
 <img alt="CRRM_example_14_fading_tests" src="_images/CRRM_example_14_fading_tests.png" />
 <figcaption>
-<p><span class="caption-text">CRRM example 14: fading.</span><a class="headerlink" href="#id11" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM example 14: fading.</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>Download script: <a class="reference download internal" download="" href="_downloads/aa3d16020d6401d6890688aa2d56e8c7/CRRM_example_14_fading_tests.py"><code class="xref download docutils literal notranslate"><span class="pre">CRRM_example_14_fading_tests.py</span></code></a></p>
@@ -536,7 +543,7 @@ speed-up factor=1.84 😁
 <p>Most users do not need to know anything about this.</p>
 <ul class="simple">
 <li><p>UE locations <span class="math notranslate nohighlight">\(u_i\)</span> (one row per UE, three columns <span class="math notranslate nohighlight">\(x,y,x\)</span>).</p></li>
-<li><p>Cells locations <span class="math notranslate nohighlight">\(c_j\)</span> one row per cell, (three columns <span class="math notranslate nohighlight">\(x,y,x\)</span>)</p></li>
+<li><p>Cells locations <span class="math notranslate nohighlight">\(c_j\)</span> (one row per cell, three columns <span class="math notranslate nohighlight">\(x,y,x\)</span>)</p></li>
 <li><p><span class="math notranslate nohighlight">\(\text{Cell}_j\)</span> transmits with power <span class="math notranslate nohighlight">\(p_j\)</span> (<span class="math notranslate nohighlight">\(p_{jk}\)</span> with subbands).</p></li>
 <li><p>Distance matrix <span class="math notranslate nohighlight">\(D_{ij}=||u_i-c_j||\)</span>.</p></li>
 <li><p>Attachment vector: <span class="math notranslate nohighlight">\(\text{UE}_i\)</span> attaches to cell <span class="math notranslate nohighlight">\(a_j\)</span> with best signal.</p></li>
@@ -551,18 +558,18 @@ speed-up factor=1.84 😁
 <li><p>Resource allocation and throughput calculation are done by the function <a class="reference internal" href="#CRRM.Simulator.get_UE_throughputs" title="CRRM.Simulator.get_UE_throughputs"><code class="xref any py py-func docutils literal notranslate"><span class="pre">CRRM.Simulator.get_UE_throughputs</span></code></a> and the class <a class="reference internal" href="#CRRM.Throughput" title="CRRM.Throughput"><code class="xref any py py-class docutils literal notranslate"><span class="pre">CRRM.Throughput</span></code></a> documented below.</p></li>
 </ul>
 <p>The horizontal arrows in the block diagram below indicate dependencies of one block upon others. Blocks drawn with the same height have the same numbers of rows (<span class="math notranslate nohighlight">\(n_{\text{UEs}}\)</span>), and blocks drawn with the same width have the same numbers of columns (either <span class="math notranslate nohighlight">\(n_{\text{cells}}\)</span>, or 1). Stacks indicate the third dimension, which stores the data for each subband.</p>
-<figure class="align-default" id="id12">
+<figure class="align-default" id="id13">
 <a class="reference internal image-reference" href="_images/CRRM_block_diagram.png"><img alt="CRRM block diagram" src="_images/CRRM_block_diagram.png" style="width: 750.0px; height: 400.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">CRRM simulator block structure.</span><a class="headerlink" href="#id12" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM simulator block structure.</span><a class="headerlink" href="#id13" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id13">
+<figure class="align-default" id="id14">
 <a class="reference internal image-reference" href="_images/CRRM_block_diagram_with_strip.png"><img alt="CRRM block diagram with strip" src="_images/CRRM_block_diagram_with_strip.png" style="width: 750.0px; height: 400.0px;" />
 </a>
 <figcaption>
-<p><span class="caption-text">CRRM simulator block structure, with the horizontal red strip showing the rows of vectors and matrices which are updated when a UE moves.</span><a class="headerlink" href="#id13" title="Link to this image">¶</a></p>
+<p><span class="caption-text">CRRM simulator block structure, with the horizontal red strip showing the rows of vectors and matrices which are updated when a UE moves.</span><a class="headerlink" href="#id14" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 <hr></section>
@@ -739,6 +746,21 @@ but not affect UE moves.</p>
 </dd></dl>
 
 <dl class="py function">
+<dt class="sig sig-object py" id="CRRM.Simulator.change_power_matrix">
+<span class="sig-prename descclassname"><span class="pre">CRRM.Simulator.</span></span><span class="sig-name descname"><span class="pre">change_power_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">indices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">deltas</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CRRM.Simulator.change_power_matrix" title="Link to this definition">¶</a></dt>
+<dd><p>Shift some or all rows of the power matrix, by the given deltas.
+To reset all powers, use <a class="reference internal" href="#CRRM.Simulator.set_power_matrix" title="CRRM.Simulator.set_power_matrix"><code class="xref any py py-func docutils literal notranslate"><span class="pre">CRRM.Simulator.set_power_matrix()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>indices</strong> (<em>a list</em><em> of </em><em>cell indices</em><em>, or </em><em>'all'</em>)</p></li>
+<li><p><strong>deltas</strong> (<em>float</em><em>, or </em><em>2d array</em><em> (</em><em>one row for each index</em><em>, </em><em>one column per subband</em><em>)</em>)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
 <dt class="sig sig-object py" id="CRRM.Simulator.get_UE_throughputs">
 <span class="sig-prename descclassname"><span class="pre">CRRM.Simulator.</span></span><span class="sig-name descname"><span class="pre">get_UE_throughputs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ues</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">slice(None,</span> <span class="pre">None,</span> <span class="pre">None)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subbands</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">slice(None,</span> <span class="pre">None,</span> <span class="pre">None)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CRRM.Simulator.get_UE_throughputs" title="Link to this definition">¶</a></dt>
 <dd><p>Get the current UE throughputs for specified lists of ues  (default all UEs), and of subbands (default all subbands).</p>
@@ -847,7 +869,7 @@ but not affect UE moves.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="CRRM.Simulator.set_power_matrix">
 <span class="sig-prename descclassname"><span class="pre">CRRM.Simulator.</span></span><span class="sig-name descname"><span class="pre">set_power_matrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#CRRM.Simulator.set_power_matrix" title="Link to this definition">¶</a></dt>
-<dd><p>Set the power matrix to a new value. The matrix must have shape (n_cell_locations,n_subbands). It will be repeated across sectors if there are more than 1.</p>
+<dd><p>Set the power matrix to a new value. The matrix must have shape (n_cell_locations,n_subbands). It will be repeated across sectors if there are more than 1. To change just some cell powers by given deltas, use <a class="reference internal" href="#CRRM.Simulator.change_power_matrix" title="CRRM.Simulator.change_power_matrix"><code class="xref any py py-func docutils literal notranslate"><span class="pre">CRRM.Simulator.change_power_matrix()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -1370,16 +1392,16 @@ from a script where the necessary modules are in the Python path.</p>
 ‘plot_RMa_pathloss_runtime_comparison.pdf’ in the current directory.</p>
 </dd></dl>
 
-<figure class="align-default" id="id14">
+<figure class="align-default" id="id15">
 <img alt="RMa pathloss model" src="_images/RMa_pathloss_model.png" />
 <figcaption>
-<p><span class="caption-text">RMa pathloss model</span><a class="headerlink" href="#id14" title="Link to this image">¶</a></p>
+<p><span class="caption-text">RMa pathloss model</span><a class="headerlink" href="#id15" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-default" id="id15">
+<figure class="align-default" id="id16">
 <img alt="RMa pathloss runtime comparison" src="_images/RMa_pathloss_runtime_comparison.png" />
 <figcaption>
-<p><span class="caption-text">RMa pathloss models, runtime comparison</span><a class="headerlink" href="#id15" title="Link to this image">¶</a></p>
+<p><span class="caption-text">RMa pathloss models, runtime comparison</span><a class="headerlink" href="#id16" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1512,10 +1534,10 @@ the linear pathloss value to the dB scale.</p>
 
 </dd></dl>
 
-<figure class="align-default" id="id16">
+<figure class="align-default" id="id17">
 <img alt="UMa pathloss model" src="_images/UMa_pathloss_model.png" />
 <figcaption>
-<p><span class="caption-text">UMa pathloss model</span><a class="headerlink" href="#id16" title="Link to this image">¶</a></p>
+<p><span class="caption-text">UMa pathloss model</span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -1922,10 +1944,10 @@ converts the linear pathloss value to the dB scale.</p>
 
 </dd></dl>
 
-<figure class="align-default" id="id17">
+<figure class="align-default" id="id18">
 <img alt="UMi pathloss model" src="_images/UMi_pathloss_model.png" />
 <figcaption>
-<p><span class="caption-text">UMi pathloss model</span><a class="headerlink" href="#id17" title="Link to this image">¶</a></p>
+<p><span class="caption-text">UMi pathloss model</span><a class="headerlink" href="#id18" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -2088,10 +2110,10 @@ LOS, NLOS, and free-space scenarios. Defaults to False.</p></li>
 and pathgain values for the different scenarios.</p>
 </dd></dl>
 
-<figure class="align-default" id="id18">
+<figure class="align-default" id="id19">
 <img alt="InH pathloss model" src="_images/InH_pathloss_model.png" />
 <figcaption>
-<p><span class="caption-text">InH pathloss model</span><a class="headerlink" href="#id18" title="Link to this image">¶</a></p>
+<p><span class="caption-text">InH pathloss model</span><a class="headerlink" href="#id19" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
 </section>
@@ -2275,13 +2297,13 @@ Defaults to False.</p></li>
 </dl>
 </dd></dl>
 
-<figure class="align-default" id="id19">
+<figure class="align-default" id="id20">
 <img alt="power_law_pathloss_model" src="_images/power_law_pathloss_model.png" />
 <figcaption>
-<p><span class="caption-text">Power-law pathloss model</span><a class="headerlink" href="#id19" title="Link to this image">¶</a></p>
+<p><span class="caption-text">Power-law pathloss model</span><a class="headerlink" href="#id20" title="Link to this image">¶</a></p>
 </figcaption>
 </figure>
-<hr align="left" width="100%"><p>Last modified: 2025-09-30 10:12</p>
+<hr align="left" width="100%"><p>Last modified: 2025-11-10 10:49</p>
 </section>
 </section>
 </section>
@@ -2300,7 +2322,7 @@ Defaults to False.</p></li>
 <li><a class="reference internal" href="#purpose">Purpose</a><ul>
 <li><a class="reference internal" href="#authors">Authors</a></li>
 <li><a class="reference internal" href="#software-dependencies">Software dependencies</a></li>
-<li><a class="reference internal" href="#installation">Installation</a></li>
+<li><a class="reference internal" href="#installation-from-source">Installation from source</a></li>
 <li><a class="reference internal" href="#performance">Performance</a></li>
 </ul>
 </li>

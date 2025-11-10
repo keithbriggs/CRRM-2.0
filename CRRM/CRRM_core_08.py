@@ -1069,7 +1069,10 @@ class CRRM:
         return self.p.data
 
     def set_power_matrix(self, p):
-        "Set the power matrix to a new value. The matrix must have shape (n_cell_locations,n_subbands). It will be repeated across sectors if there are more than 1."
+        """
+        Set the power matrix to a new value. The matrix must have shape (n_cell_locations,n_subbands). It will be repeated across sectors if there are more than 1. To change just some cell powers by given deltas, use :any:`CRRM.Simulator.change_power_matrix()`.
+
+        """
         power_matrix = np.array(p, dtype=np.float64)
         if np.any(power_matrix<0.0):
             print(
@@ -1100,6 +1103,7 @@ class CRRM:
     def change_power_matrix(self, indices, deltas):
         """
         Shift some or all rows of the power matrix, by the given deltas.
+        To reset all powers, use :any:`CRRM.Simulator.set_power_matrix()`.
 
         Parameters
         ----------
