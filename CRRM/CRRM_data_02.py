@@ -15,21 +15,21 @@ class CRRM_logger:
 
     Parameters
     ----------
-
-    captures: tuple of strings. The allowed values are:
-
-      * 'UE_location'
-      * 'rsrp' (received signal reference power)
-      * 'a' (attachment vector)
-      * 'sinr' (signal to interference plus noise matrix in dB)
-      * 'se_Shannon' (Shannon capacity in b/s/Hz)
-      * 'cqi' (channel quality index)
-      * 'mcs' (modulation and coding scheme index)
-      * 'se_from_mcs' (actual spectral efficiency in b/s/Hz)
-      * 'tp' (UE downlink throughput in Mb/s)
-
-    ues: tuple of UE indices
-    block_size: int, size of pre-allocated internal data. Not normally altered.
+    captures : 
+      The quantities to capture; allowed values are:
+       * 'UE_location'
+       * 'rsrp' (received signal reference power)
+       * 'a' (attachment vector)
+       * 'sinr' (signal to interference plus noise matrix in dB)
+       * 'se_Shannon' (Shannon capacity in b/s/Hz)
+       * 'cqi' (channel quality index)
+       * 'mcs' (modulation and coding scheme index)
+       * 'se_from_mcs' (actual spectral efficiency in b/s/Hz)
+       * 'tp' (UE downlink throughput in Mb/s)
+    ues :  
+      UE indices to log
+    block_size : 
+      size of pre-allocated internal data. Not normally altered.
     """
 
     def __init__(self, crrm, captures=(), ues=(), block_size=1000):
